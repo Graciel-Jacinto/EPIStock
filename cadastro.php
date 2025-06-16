@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $conexao->real_escape_string($_POST['email']);
     $senha = $_POST['senha'];
     $confirmar_senha = $_POST['confirmar_senha'];
+    $tipo_usuario = $conexao->real_escape_string($_POST['tipo_usuario']);
     $termos = isset($_POST['termos']) ? true : false;
 
     // Validações básicas
@@ -47,6 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mensagens_erro['confirmar_senha'] = 'Senhas não coincidem';
     }
 
+    if (!in_array($tipo_usuario, ['admin', 'usuario'])) {
+        $erro = true;
+        $mensagens_erro['tipo_usuario'] = 'Tipo de usuário inválido';
+    }
+
     if (!$termos) {
         $erro = true;
         $mensagens_erro['termos'] = 'Você deve aceitar os termos';
@@ -64,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
             
             // Insere no banco de dados
-            $sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$senha_hash')";
+            $sql = "INSERT INTO usuarios (nome, email, senha, tipo_usuario) VALUES ('$nome', '$email', '$senha_hash', '$tipo_usuario')";
             
             if ($conexao->query($sql) === TRUE) {
                 $_SESSION['cadastro_sucesso'] = true;
@@ -89,9 +95,16 @@ $conexao->close();
     <title>EPIStock - Cadastro</title>
     <link rel="stylesheet" href="CSS.css">
     
-    <!-- Seus estilos CSS aqui (mantidos iguais) -->
     <style>
         /* [Todo o seu CSS original permanece aqui] */
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-top: 5px;
+        }
     </style>
     
 </head>
@@ -147,6 +160,17 @@ $conexao->close();
                     </div>
                     
                     <div class="form-group">
+                        <label for="tipo_usuario">Tipo de Usuário</label>
+                        <select id="tipo_usuario" name="tipo_usuario" class="<?php echo !empty($mensagens_erro['tipo_usuario']) ? 'input-error' : ''; ?>" required>
+                            <option value="usuario" <?php echo (isset($_POST['tipo_usuario']) && $_POST['tipo_usuario'] == 'usuario') ? 'selected' : ''; ?>>Usuário Normal</option>
+                            <option value="admin" <?php echo (isset($_POST['tipo_usuario']) && $_POST['tipo_usuario'] == 'admin') ? 'selected' : ''; ?>>Administrador</option>
+                        </select>
+                        <?php if (!empty($mensagens_erro['tipo_usuario'])): ?>
+                            <span class="error-message" style="display: block;"><?php echo $mensagens_erro['tipo_usuario']; ?></span>
+                        <?php endif; ?>
+                    </div>
+                    
+                    <div class="form-group">
                         <label for="senha">Senha</label>
                         <input type="password" id="senha" name="senha" placeholder="Crie uma senha segura" 
                                class="<?php echo !empty($mensagens_erro['senha']) ? 'input-error' : ''; ?>" required>
@@ -191,6 +215,9 @@ $conexao->close();
             const nome = document.getElementById('nome');
             if (nome.value.trim().length < 3) {
                 valid = false;
+                nome.classList.add('input-error');
+            } else {
+                nome.classList.remove('input-error');
             }
             
             // Validação do email
@@ -198,24 +225,45 @@ $conexao->close();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email.value)) {
                 valid = false;
+                email.classList.add('input-error');
+            } else {
+                email.classList.remove('input-error');
+            }
+            
+            // Validação do tipo de usuário
+            const tipoUsuario = document.getElementById('tipo_usuario');
+            if (tipoUsuario.value !== 'admin' && tipoUsuario.value !== 'usuario') {
+                valid = false;
+                tipoUsuario.classList.add('input-error');
+            } else {
+                tipoUsuario.classList.remove('input-error');
             }
             
             // Validação da senha
             const senha = document.getElementById('senha');
             if (senha.value.length < 8) {
                 valid = false;
+                senha.classList.add('input-error');
+            } else {
+                senha.classList.remove('input-error');
             }
             
             // Validação da confirmação de senha
             const confirmarSenha = document.getElementById('confirmar-senha');
             if (senha.value !== confirmarSenha.value) {
                 valid = false;
+                confirmarSenha.classList.add('input-error');
+            } else {
+                confirmarSenha.classList.remove('input-error');
             }
             
             // Validação dos termos
             const termos = document.getElementById('termos');
             if (!termos.checked) {
                 valid = false;
+                termos.classList.add('input-error');
+            } else {
+                termos.classList.remove('input-error');
             }
             
             if (!valid) {

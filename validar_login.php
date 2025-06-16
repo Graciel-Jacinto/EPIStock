@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 // Validar campos obrigatórios
 if (empty($_POST['email']) || empty($_POST['senha'])) {
-    header('Location: login.php?status=erro&motivo=campos-vazios');
+    header('Location: login.php?status=campos');
     exit();
 }
 
@@ -30,16 +30,16 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 // Conexão com o banco de dados (substitua com seus dados)
 $host = 'localhost';
-$dbname = 'epistock_db'; // substitua pelo nome do seu banco
-$username = 'root'; // substitua pelo seu usuário
-$password = ''; // substitua pela sua senha
+$dbname = 'epistock_db';
+$username = 'root';
+$password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    // Buscar usuário no banco de dados
-    $stmt = $pdo->prepare("SELECT id, nome, email, senha FROM usuarios WHERE email = :email LIMIT 1");
+    // Buscar usuário no banco de dados com todos os campos necessários
+    $stmt = $pdo->prepare("SELECT id, nome, email, senha, tipo_usuario, data_cadastro FROM usuarios WHERE email = :email LIMIT 1");
     $stmt->bindParam(':email', $email);
     $stmt->execute();
     
@@ -48,22 +48,26 @@ try {
         
         // Verificar senha (compara a senha digitada com o hash no banco)
         if (password_verify($senha, $usuario['senha'])) {
-            // Autenticação bem-sucedida
-            $_SESSION['usuario_id'] = $usuario['id'];
-            $_SESSION['usuario_nome'] = $usuario['nome'];
-            $_SESSION['usuario_email'] = $usuario['email'];
+            // Autenticação bem-sucedida - armazenar dados na sessão
+            $_SESSION['usuario'] = [
+                'id' => $usuario['id'],
+                'nome' => $usuario['nome'],
+                'email' => $usuario['email'],
+                'tipo_usuario' => $usuario['tipo_usuario'],
+                'data_cadastro' => $usuario['data_cadastro']
+            ];
             
             // Redirecionar para dashboard
             header('Location: dashboard.php');
             exit();
         } else {
             // Senha incorreta
-            header('Location: login.php?status=erro&motivo=credenciais-incorretas');
+            header('Location: login.php?status=erro');
             exit();
         }
     } else {
         // Usuário não encontrado
-        header('Location: login.php?status=erro&motivo=usuario-nao-encontrado');
+        header('Location: login.php?status=erro');
         exit();
     }
     
