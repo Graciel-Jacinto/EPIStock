@@ -274,6 +274,36 @@
                 gap: 15px;
             }
         }
+    /* Adicionar estilos para mensagens de erro */
+        .error-message {
+            color: #ef233c;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .input-error {
+            border-color: #ef233c !important;
+        }
+        
+        .alert {
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
     </style>
 </head>
 <body>
@@ -288,20 +318,37 @@
             <div class="logo-subtext">Gerenciamento de EPIs</div>
         </div>
 
-        <form class="login-form">
+        <!-- Mensagens do sistema -->
+        <?php if (isset($_GET['status'])): ?>
+            <div class="alert <?php echo $_GET['status'] === 'sucesso' ? 'alert-success' : 'alert-danger'; ?>">
+                <?php 
+                    if ($_GET['status'] === 'sucesso') {
+                        echo 'Login realizado com sucesso!';
+                    } elseif ($_GET['status'] === 'erro') {
+                        echo 'E-mail ou senha incorretos!';
+                    } elseif ($_GET['status'] === 'campos') {
+                        echo 'Por favor, preencha todos os campos!';
+                    }
+                ?>
+            </div>
+        <?php endif; ?>
+
+        <form id="loginForm" action="validar_login.php" method="POST" class="login-form" novalidate>
             <div class="form-group">
                 <label for="email">E-mail ou telefone</label>
-                <input type="text" id="email" placeholder="usuario@empresa.com" required>
+                <input type="text" id="email" name="email" placeholder="usuario@empresa.com" required>
+                <div class="error-message" id="email-error">Por favor, insira um e-mail ou telefone válido</div>
             </div>
 
             <div class="form-group">
                 <label for="senha">Senha</label>
-                <input type="password" id="senha" placeholder="••••••••" required>
+                <input type="password" id="senha" name="senha" placeholder="••••••••" required minlength="6">
+                <div class="error-message" id="senha-error">A senha deve ter pelo menos 6 caracteres</div>
             </div>
 
             <div class="flex-between">
                 <label class="checkbox-label">
-                    <input type="checkbox"> Lembrar-me
+                    <input type="checkbox" name="lembrar"> Lembrar-me
                 </label>
                 <a href="#" class="link">Esqueceu a senha?</a>
             </div>
@@ -310,6 +357,76 @@
         </form>
 
         <p class="footer-text">Não tem uma conta? <a href="cadastro.php" class="link">Solicitar acesso</a></p>
+        <p class="footer-text">V 1.0.0</p>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('loginForm');
+            const emailInput = document.getElementById('email');
+            const senhaInput = document.getElementById('senha');
+            const emailError = document.getElementById('email-error');
+            const senhaError = document.getElementById('senha-error');
+
+            // Validação em tempo real
+            emailInput.addEventListener('input', validateEmail);
+            senhaInput.addEventListener('input', validateSenha);
+
+            // Validação no submit
+            form.addEventListener('submit', function(event) {
+                let isValid = true;
+                
+                if (!validateEmail()) isValid = false;
+                if (!validateSenha()) isValid = false;
+                
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+
+            function validateEmail() {
+                const value = emailInput.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const phoneRegex = /^(\+\d{1,3})?\d{10,15}$/;
+                
+                if (value === '') {
+                    showError(emailInput, emailError, 'Campo obrigatório');
+                    return false;
+                } else if (!emailRegex.test(value) && !phoneRegex.test(value)) {
+                    showError(emailInput, emailError, 'E-mail ou telefone inválido');
+                    return false;
+                } else {
+                    hideError(emailInput, emailError);
+                    return true;
+                }
+            }
+
+            function validateSenha() {
+                const value = senhaInput.value;
+                
+                if (value === '') {
+                    showError(senhaInput, senhaError, 'Campo obrigatório');
+                    return false;
+                } else if (value.length < 6) {
+                    showError(senhaInput, senhaError, 'Mínimo 6 caracteres');
+                    return false;
+                } else {
+                    hideError(senhaInput, senhaError);
+                    return true;
+                }
+            }
+
+            function showError(input, errorElement, message) {
+                input.classList.add('input-error');
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+            }
+
+            function hideError(input, errorElement) {
+                input.classList.remove('input-error');
+                errorElement.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>

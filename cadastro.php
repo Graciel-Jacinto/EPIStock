@@ -177,7 +177,8 @@ $conexao->close();
                 </form>
             <?php endif; ?>
 
-            <p class="login-link">Já tem uma conta? <a href="index.html">Faça login</a></p>
+            <p class="login-link">Já tem uma conta? <a href="index.php">Faça login</a></p>
+            <p class="login-link">V 1.0.0</p>
         </div>
     </div>
 
