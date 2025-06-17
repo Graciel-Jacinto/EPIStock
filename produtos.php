@@ -10,7 +10,9 @@ $unidade = 'metric';
 
 // Verifica a página atual
 $paginaAtual = basename($_SERVER['PHP_SELF']);
-$isPedidosPage = ($paginaAtual == 'pedidos.php');
+$isDashboard = ($paginaAtual == 'dashboard.php');
+$isPedidos = ($paginaAtual == 'pedidos.php');
+$isProdutos = ($paginaAtual == 'produtos.php');
 ?>
 
 <!DOCTYPE html>
@@ -18,36 +20,50 @@ $isPedidosPage = ($paginaAtual == 'pedidos.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EPIStock - <?php echo $isPedidosPage ? 'Pedidos' : 'Dashboard'; ?></title>
+    <title>EPIStock - <?php 
+        if ($isDashboard) echo 'Dashboard';
+        elseif ($isPedidos) echo 'Pedidos';
+        elseif ($isProdutos) echo 'Produtos';
+        else echo 'Sistema';
+    ?></title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="das.css">
     <style>
         /* [Mantenha todo o CSS anterior igual] */
         
-        .em-breve {
+        .em-desenvolvimento {
             text-align: center;
             padding: 50px 20px;
             max-width: 600px;
             margin: 0 auto;
         }
         
-        .em-breve i {
+        .em-desenvolvimento i {
             font-size: 4rem;
             color: var(--accent);
             margin-bottom: 20px;
         }
         
-        .em-breve h2 {
+        .em-desenvolvimento h2 {
             font-size: 2rem;
             color: var(--primary-dark);
             margin-bottom: 15px;
         }
         
-        .em-breve p {
+        .em-desenvolvimento p {
             font-size: 1.1rem;
             color: var(--text-light);
             line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .dev-company {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-style: italic;
+            color: var(--text-light);
         }
     </style>
 </head>
@@ -55,7 +71,7 @@ $isPedidosPage = ($paginaAtual == 'pedidos.php');
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="logo-container">
-<img src="https://greenyworkwear.com/wp-content/uploads/2025/02/Logo-Greeny-01-scaled-e1746525528179-1536x523.png" alt="Greeny Workwear Logo" class="logo-img">
+            <img src="https://greenyworkwear.com/wp-content/uploads/2025/02/Logo-Greeny-01-scaled-e1746525528179-1536x523.png" alt="Greeny Workwear Logo" class="logo-img">
             <div>
                 <div class="system-name">EPIStock</div>
                 <div class="company-name">Greeny Workwear</div>
@@ -63,20 +79,20 @@ $isPedidosPage = ($paginaAtual == 'pedidos.php');
         </div>
         
         <ul class="nav-menu">
-            <li class="nav-item <?php echo !$isPedidosPage ? 'active' : ''; ?>">
+            <li class="nav-item <?php echo $isDashboard ? 'active' : ''; ?>">
                 <a href="dashboard.php"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a>
             </li>
-            <li class="nav-item <?php echo $isPedidosPage ? 'active' : ''; ?>">
+            <li class="nav-item <?php echo $isPedidos ? 'active' : ''; ?>">
                 <a href="pedidos.php"><i class="fas fa-clipboard-list"></i> <span>Pedidos</span></a>
             </li>
-            <li class="nav-item">
-                <a href="#"><i class="fas fa-boxes"></i> <span>Produtos</span></a>
+            <li class="nav-item <?php echo $isProdutos ? 'active' : ''; ?>">
+                <a href="produtos.php"><i class="fas fa-boxes"></i> <span>Produtos</span></a>
             </li>
             <li class="nav-item">
                 <a href="#"><i class="fas fa-users"></i> <span>Colaboradores</span></a>
             </li>
             <li class="nav-item">
-                <a href="#"><i class="fas fa-chart-line"></i> <span>Finanças</span></a>
+                <a href="finacas.php"><i class="fas fa-chart-line"></i> <span>Finanças</span></a>
             </li>
             <li class="nav-item">
                 <a href="#"><i class="fas fa-cog"></i> <span>Configurações</span></a>
@@ -90,13 +106,30 @@ $isPedidosPage = ($paginaAtual == 'pedidos.php');
     
     <!-- Main Content -->
     <div class="main-content">
-        <?php if ($isPedidosPage): ?>
+        <?php if ($isPedidos): ?>
             <!-- Página de Pedidos -->
-            <div class="em-breve">
+            <div class="em-desenvolvimento">
                 <i class="fas fa-tools"></i>
                 <h2>Em Breve</h2>
-                <p>Esta secção encontra-se atualmente em desenvolvimento. Estamos a trabalhar para trazer-lhe a melhor experiência possível. Agradecemos a sua compreensão.</p>
+                <p>Esta secção encontra-se atualmente em desenvolvimento.</p>
+                <p>Estamos a trabalhar para trazer-lhe a melhor experiência possível.</p>
+                <p>Agradecemos a sua compreensão.</p>
             </div>
+        
+        <?php elseif ($isProdutos): ?>
+            <!-- Página de Produtos -->
+            <div class="em-desenvolvimento">
+                <i class="fas fa-box-open"></i>
+                <h2>Produtos em Análise</h2>
+                <p>Estamos a analisar cuidadosamente os produtos para integrar nesta secção do sistema.</p>
+                <p>Esta funcionalidade está a ser desenvolvida com o máximo cuidado para garantir a melhor experiência.</p>
+                
+                <div class="dev-company">
+                    <p>Desenvolvimento a cargo de:</p>
+                    <p><strong>Moz Websites</strong></p>
+                </div>
+            </div>
+        
         <?php else: ?>
             <!-- Página Dashboard -->
             <div class="header">
@@ -174,72 +207,9 @@ $isPedidosPage = ($paginaAtual == 'pedidos.php');
         <?php endif; ?>
     </div>
 
-    <?php if (!$isPedidosPage): ?>
+    <?php if ($isDashboard): ?>
     <script>
-        // Função para obter clima via API
-        async function fetchWeather(city = '<?php echo $cidadePadrao; ?>') {
-            const apiKey = '<?php echo $apiKey; ?>';
-            const unit = '<?php echo $unidade; ?>';
-            const lang = 'pt';
-            
-            try {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
-                        async (position) => {
-                            const { latitude, longitude } = position.coords;
-                            const response = await fetch(
-                                `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}&lang=${lang}`
-                            );
-                            updateWeatherUI(await response.json());
-                        },
-                        async (error) => {
-                            console.error('Erro ao obter localização:', error);
-                            const response = await fetch(
-                                `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}&lang=${lang}`
-                            );
-                            updateWeatherUI(await response.json());
-                        }
-                    );
-                } else {
-                    const response = await fetch(
-                        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}&lang=${lang}`
-                    );
-                    updateWeatherUI(await response.json());
-                }
-            } catch (error) {
-                console.error('Erro ao obter dados do clima:', error);
-                document.getElementById('weather-city').textContent = 'Erro ao carregar dados';
-            }
-        }
-
-        function updateWeatherUI(data) {
-            if (data.cod !== 200) {
-                document.getElementById('weather-city').textContent = 'Dados não disponíveis';
-                return;
-            }
-
-            const cityElement = document.getElementById('weather-city');
-            const tempElement = document.getElementById('weather-temp');
-            const descElement = document.getElementById('weather-desc');
-            const iconElement = document.getElementById('weather-icon');
-
-            cityElement.textContent = `${data.name}, ${data.sys.country}`;
-            tempElement.textContent = `${Math.round(data.main.temp)}°C`;
-            descElement.textContent = data.weather[0].description;
-
-            const iconMap = {
-                '01d': 'fa-sun', '01n': 'fa-moon', '02d': 'fa-cloud-sun', '02n': 'fa-cloud-moon',
-                '03d': 'fa-cloud', '03n': 'fa-cloud', '04d': 'fa-cloud', '04n': 'fa-cloud',
-                '09d': 'fa-cloud-rain', '09n': 'fa-cloud-rain', '10d': 'fa-cloud-sun-rain',
-                '10n': 'fa-cloud-moon-rain', '11d': 'fa-bolt', '11n': 'fa-bolt',
-                '13d': 'fa-snowflake', '13n': 'fa-snowflake', '50d': 'fa-smog', '50n': 'fa-smog'
-            };
-
-            const weatherIcon = data.weather[0].icon;
-            iconElement.className = `fas ${iconMap[weatherIcon] || 'fa-cloud'} weather-icon-lg`;
-        }
-
-        document.addEventListener('DOMContentLoaded', fetchWeather);
+        // [Mantenha o JavaScript do dashboard igual]
     </script>
     <?php endif; ?>
 </body>
