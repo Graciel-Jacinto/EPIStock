@@ -96,8 +96,7 @@ $conexao->close();
     <link rel="stylesheet" href="CSS.css">
     
     <style>
-        /* [Todo o seu CSS original permanece aqui] */
-        .form-group select {
+      .form-group select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
@@ -105,21 +104,334 @@ $conexao->close();
             font-size: 16px;
             margin-top: 5px;
         }
+        
+        /* Estilo adicional para a logo */
+        .logo-img {
+            width: 120px; /* Ajuste conforme necessário */
+            height: auto;
+            margin-bottom: 15px;
+        }
+        :root {
+            --primary: #204b72; /* Azul */
+            --primary-dark: #163552; /* Azul mais escuro */
+            --accent: #0c9404; /* Verde */
+            --text: #2b2d42;
+            --light-bg: #f8f9fa;
+            --border: #dee2e6;
+            --error: #ef233c;
+            --radius: 16px;
+            --shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            background: linear-gradient(135deg, #e0f0e5 0%, #f0f8ff 50%, #e0e9f0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alterado para flex-start para permitir rolagem */
+            padding: 40px 20px; /* Aumentado o padding */
+            position: relative;
+            overflow-y: auto; /* Permite rolagem vertical */
+        }
+        
+        /* Efeito de partículas no fundo */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(12, 148, 4, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(32, 75, 114, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 40% 80%, rgba(22, 53, 82, 0.1) 0%, transparent 20%);
+            z-index: -1;
+        }
+        
+        /* Container principal */
+        .container {
+            width: 100%;
+            max-width: 550px; /* Aumentado de 480px para 550px */
+            margin: 40px auto; /* Adicionado margem para espaçamento vertical */
+        }
+        
+        /* Card de registro */
+        .register-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            width: 100%;
+            padding: 50px 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 30px; /* Espaço para rolagem */
+        }
+        
+        .register-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .register-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(to right, var(--accent), var(--primary));
+        }
+        
+        /* Logo */
+      /* Logo */
+.logo-img {
+    height: 80px;
+    width: auto; /* Mantém a proporção original */
+    /* ... resto do código ... */
+}
+
+.logo-img {
+    height: 80px; /* Aumentei de 50px para 80px */
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+        
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 5px;
+            background: linear-gradient(to right, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .logo-subtext {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        /* Formulário */
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s;
+            background-color: rgba(248, 249, 250, 0.7);
+        }
+        
+        .form-group input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(12, 148, 4, 0.2);
+            background-color: white;
+        }
+        
+        /* Links */
+        .link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        .link:hover {
+            color: var(--accent);
+        }
+        
+        .link:hover::after {
+            width: 100%;
+        }
+        
+        /* Botão */
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(to right, var(--accent), var(--primary));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 6px 15px rgba(12, 148, 4, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(12, 148, 4, 0.5);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        /* Mensagens de login */
+        .login-link {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        /* Adicionar estilos para mensagens de erro */
+        .error-message {
+            color: #ef233c;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .input-error {
+            border-color: #ef233c !important;
+        }
+        
+        .alert {
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        /* Termos */
+        .terms-group {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            font-size: 14px;
+        }
+        
+        .terms-group input {
+            margin-right: 10px;
+            accent-color: var(--accent);
+        }
+        
+        .terms-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .terms-link:hover {
+            text-decoration: underline;
+            color: var(--accent);
+        }
+        
+        /* Dica do formulário */
+        .form-hint {
+            display: block;
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 576px) {
+            .register-card {
+                padding: 40px 25px;
+            }
+            
+            .container {
+                max-width: 100%;
+                padding: 20px 15px;
+            }
+        }
     </style>
     
 </head>
 <body>
-    <div class="container">
+   <div class="container">
         <div class="register-card">
             <div class="logo">
-                <div class="logo-badge">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-                    </svg>
-                </div>
+                <!-- Logo imagem PNG da Greeny Workwear -->
+                <img src="imagens\logo-greeny-2025-1536x396.png" alt="Greeny Workwear Logo" class="logo-img">
+                
                 <div class="logo-text">EPIStock</div>
                 <div class="logo-subtext">Crie sua conta</div>
             </div>
+                
+              
 
             <?php if (isset($_SESSION['cadastro_sucesso'])): ?>
                 <div class="success-message" style="display: block;">
@@ -201,7 +513,7 @@ $conexao->close();
                 </form>
             <?php endif; ?>
 
-            <p class="login-link">Já tem uma conta? <a href="index.php">Faça login</a></p>
+            <p class="login-link">Já tem uma conta? <a href="logar.php">Faça login</a></p>
             <p class="login-link">V 1.0.0</p>
         </div>
     </div>

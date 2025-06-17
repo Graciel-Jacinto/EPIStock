@@ -6,9 +6,9 @@
     <title>EPIStock - Login</title>
     <style>
         :root {
-            --primary: #4361ee;
-            --primary-dark: #3f37c9;
-            --accent: #4895ef;
+            --primary: #204b72; /* Azul */
+            --primary-dark: #163552; /* Azul mais escuro */
+            --accent: #0c9404; /* Verde */
             --text: #2b2d42;
             --light-bg: #f8f9fa;
             --border: #dee2e6;
@@ -27,7 +27,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         body {
-            background: linear-gradient(135deg, #e0e3ff 0%, #f0f4ff 50%, #e0e9ff 100%);
+            background: linear-gradient(135deg, #e0f0e5 0%, #f0f8ff 50%, #e0e9f0 100%);
             min-height: 100vh;
             display: grid;
             place-items: center;
@@ -45,9 +45,9 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(67, 97, 238, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 80% 70%, rgba(72, 149, 239, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 40% 80%, rgba(63, 55, 201, 0.1) 0%, transparent 20%);
+                radial-gradient(circle at 20% 30%, rgba(12, 148, 4, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(32, 75, 114, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 40% 80%, rgba(22, 53, 82, 0.1) 0%, transparent 20%);
             z-index: -1;
         }
         
@@ -81,7 +81,7 @@
             left: 0;
             width: 100%;
             height: 6px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
+            background: linear-gradient(to right, var(--accent), var(--primary));
         }
         
         /* Logo */
@@ -90,27 +90,14 @@
             position: relative;
         }
         
-        .logo-badge {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 25px rgba(63, 55, 201, 0.3);
+        .logo-img {
+            height: 60px;
+            margin-bottom: 15px;
             transition: transform 0.3s ease;
         }
         
-        .logo-badge:hover {
-            transform: scale(1.1) rotate(10deg);
-        }
-        
-        .logo-badge svg {
-            width: 40px;
-            height: 40px;
-            fill: white;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+        .logo-img:hover {
+            transform: scale(1.05);
         }
         
         .logo-text {
@@ -118,7 +105,7 @@
             font-weight: 700;
             color: var(--text);
             margin-bottom: 5px;
-            background: linear-gradient(to right, var(--primary-dark), var(--primary));
+            background: linear-gradient(to right, var(--accent), var(--primary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -159,7 +146,7 @@
         .form-group input:focus {
             border-color: var(--accent);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.2);
+            box-shadow: 0 0 0 3px rgba(12, 148, 4, 0.2);
             background-color: white;
         }
         
@@ -187,7 +174,7 @@
         
         /* Links */
         .link {
-            color: var(--accent);
+            color: var(--primary);
             text-decoration: none;
             font-weight: 500;
             font-size: 14px;
@@ -202,12 +189,12 @@
             height: 2px;
             bottom: -2px;
             left: 0;
-            background-color: var(--primary);
+            background-color: var(--accent);
             transition: width 0.3s;
         }
         
         .link:hover {
-            color: var(--primary-dark);
+            color: var(--accent);
         }
         
         .link:hover::after {
@@ -218,7 +205,7 @@
         .btn {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
+            background: linear-gradient(to right, var(--accent), var(--primary));
             color: white;
             border: none;
             border-radius: 12px;
@@ -226,14 +213,14 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.4);
+            box-shadow: 0 6px 15px rgba(12, 148, 4, 0.4);
             position: relative;
             overflow: hidden;
         }
         
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.5);
+            box-shadow: 0 10px 25px rgba(12, 148, 4, 0.5);
         }
         
         .btn:active {
@@ -274,7 +261,8 @@
                 gap: 15px;
             }
         }
-    /* Adicionar estilos para mensagens de erro */
+        
+        /* Adicionar estilos para mensagens de erro */
         .error-message {
             color: #ef233c;
             font-size: 13px;
@@ -309,11 +297,7 @@
 <body>
     <div class="login-card">
         <div class="logo">
-            <div class="logo-badge">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
-                </svg>
-            </div>
+            <img src="imagens\logo-greeny-2025-1536x396.png" alt="EPIStock Logo" class="logo-img">
             <div class="logo-text">EPIStock</div>
             <div class="logo-subtext">Gerenciamento de EPIs</div>
         </div>

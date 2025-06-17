@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como Funciona - Greeny Workwear</title>
+    <link rel="shortcut icon" href="imagens/logo-greeny-2025-1536x396.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --green: #0c9404;
+            --blue: #204b72;
+            --light-green: #5cb85c;
+            --light-blue: #5bc0de;
+            --gold: #f0ad4e;
+            --white: #ffffff;
+            --dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f5f5f5;
+            color: var(--dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Padrões moçambicanos animados */
+        .moz-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(12, 148, 4, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(32, 75, 114, 0.05) 0%, transparent 25%);
+            z-index: -1;
+            animation: patternMove 20s infinite alternate;
+        }
+        
+        @keyframes patternMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+        
+        /* Elementos decorativos */
+        .decorative-element {
+            position: absolute;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .decor-1 {
+            top: 10%;
+            left: 5%;
+            font-size: 8rem;
+            color: var(--green);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .decor-2 {
+            bottom: 15%;
+            right: 8%;
+            font-size: 6rem;
+            color: var(--blue);
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Container principal */
+        .main-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Cabeçalho */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            animation: fadeInDown 1s both;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo img {
+            height: 60px;
+        }
+        
+        .logo-text {
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--green);
+        }
+        
+        .logo-subtext {
+            font-size: 1rem;
+            color: var(--blue);
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        nav a {
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--green);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--green);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Conteúdo principal */
+        .system-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            flex: 1;
+        }
+        
+        .system-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s both;
+        }
+        
+        .system-header h1 {
+            font-size: 2.5rem;
+            color: var(--blue);
+            margin-bottom: 1rem;
+            font-family: 'Ubuntu', sans-serif;
+        }
+        
+        .system-header h1 span {
+            color: var(--green);
+        }
+        
+        .system-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* Seções do sistema */
+        .system-section {
+            margin: 4rem 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s both;
+        }
+        
+        .system-section h2 {
+            color: var(--blue);
+            margin-bottom: 1.5rem;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .system-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--green), var(--blue));
+        }
+        
+        /* Cards de recursos */
+        .system-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-color: var(--green);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            display: inline-block;
+            background: rgba(12, 148, 4, 0.1);
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+            border-radius: 50%;
+        }
+        
+        .feature-card h3 {
+            color: var(--blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .feature-card p {
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        /* Fluxo de trabalho */
+        .workflow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+            margin-left: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .workflow-steps::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--green), var(--blue));
+            border-radius: 2px;
+        }
+        
+        .step {
+            position: relative;
+            padding-left: 3rem;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            position: absolute;
+            left: -1rem;
+            top: 1.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Ubuntu', sans-serif;
+            box-shadow: 0 3px 10px rgba(32, 75, 114, 0.3);
+        }
+        
+        .step h3 {
+            color: var(--blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Screenshots */
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .screenshot {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .screenshot:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .screenshot img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Botões */
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Ubuntu', sans-serif;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, var(--green), var(--light-green));
+            color: var(--white);
+            box-shadow: 0 5px 15px rgba(12, 148, 4, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(12, 148, 4, 0.6);
+            background: linear-gradient(to right, var(--light-green), var(--green));
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--blue);
+            color: white;
+            padding: 3rem 2rem 1.5rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to right, var(--green), var(--blue));
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .footer-column h3 {
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--green);
+        }
+        
+        .footer-column p, 
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--green);
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .contact-info i {
+            color: var(--green);
+            font-size: 1.1rem;
+        }
+        
+        .social-footer {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-footer a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-footer a:hover {
+            background: var(--green);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .copyright p:first-child {
+            margin-bottom: 0.5rem;
+        }
+        
+        .system-credit {
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .system-header h1 {
+                font-size: 2rem;
+            }
+            
+            .system-section {
+                padding: 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fundo com padrões moçambicanos -->
+    <div class="moz-pattern"></div>
+    
+    <!-- Elementos decorativos -->
+    <div class="decorative-element decor-1">✻</div>
+    <div class="decorative-element decor-2">✺</div>
+    
+    <!-- Container principal -->
+    <div class="main-container">
+        <header>
+            <div class="logo">
+                <img src="imagens/logo-greeny-2025-1536x396.png" alt="Greeny Workwear">
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="Sobre.html">Sobre</a></li>
+                    <li><a href="infosistema.html" class="active">Sistema</a></li>
+                    <li><a href="logar.php">Login</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <!-- Conteúdo do sistema -->
+        <div class="system-container">
+            <section class="system-header">
+                <h1>Como funciona o <span>Sistema Greeny Workwear</span></h1>
+                <p>Uma solução completa para gestão de equipamentos de trabalho, desenvolvida especialmente para as necessidades das empresas moçambicanas.</p>
+            </section>
+            
+            <section class="system-section animate__animated animate__fadeIn">
+                <h2>Principais Recursos</h2>
+                <p>Conheça as funcionalidades que tornam nosso sistema a melhor escolha para sua empresa:</p>
+                
+                <div class="system-features">
+                    <div class="feature-card animate__animated animate__fadeInUp">
+                        <div class="feature-icon">📊</div>
+                        <h3>Gestão Centralizada</h3>
+                        <p>Controle todos os equipamentos da sua empresa em um único lugar, com informações atualizadas em tempo real.</p>
+                    </div>
+                    
+                    <div class="feature-card animate__animated animate__fadeInUp animate__delay-1s">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Processos Automatizados</h3>
+                        <p>Reduza erros manuais com fluxos de trabalho automatizados para requisição, entrega e devolução de equipamentos.</p>
+                    </div>
+                    
+                    <div class="feature-card animate__animated animate__fadeInUp animate__delay-2s">
+                        <div class="feature-icon">📱</div>
+                        <h3>Acesso Multiplataforma</h3>
+                        <p>Acesse o sistema de qualquer dispositivo, com interface adaptável para computadores, tablets e smartphones.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="system-section animate__animated animate__fadeIn">
+                <h2>Fluxo de Trabalho</h2>
+                <p>Veja como o Greeny Workwear simplifica a gestão dos seus equipamentos:</p>
+                
+                <div class="workflow-steps">
+                    <div class="step animate__animated animate__fadeInRight">
+                        <div class="step-number">1</div>
+                        <h3>Cadastro de Equipamentos</h3>
+                        <p>Registre todos os equipamentos da empresa com informações detalhadas como modelo, número de série, data de aquisição e foto.</p>
+                    </div>
+                    
+                    <div class="step animate__animated animate__fadeInRight animate__delay-1s">
+                        <div class="step-number">2</div>
+                        <h3>Atribuição a Funcionários</h3>
+                        <p>Associe equipamentos a funcionários específicos com datas de entrega e termos de responsabilidade.</p>
+                    </div>
+                    
+                    <div class="step animate__animated animate__fadeInRight animate__delay-2s">
+                        <div class="step-number">3</div>
+                        <h3>Monitoramento em Tempo Real</h3>
+                        <p>Acompanhe o status de cada equipamento, localização e histórico de uso através do painel de controle.</p>
+                    </div>
+                    
+                    <div class="step animate__animated animate__fadeInRight animate__delay-3s">
+                        <div class="step-number">4</div>
+                        <h3>Manutenção Preventiva</h3>
+                        <p>Receba alertas para manutenções periódicas e registre intervenções realizadas em cada equipamento.</p>
+                    </div>
+                    
+                    <div class="step animate__animated animate__fadeInRight animate__delay-4s">
+                        <div class="step-number">5</div>
+                        <h3>Relatórios e Análises</h3>
+                        <p>Gere relatórios detalhados para tomada de decisão, com dados sobre utilização, custos e vida útil dos equipamentos.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="system-section animate__animated animate__fadeIn">
+                <h2>Conheça a Interface</h2>
+                <p>Visualize algumas telas do nosso sistema intuitivo:</p>
+                
+                <div class="screenshot-grid">
+                    <div class="screenshot animate__animated animate__fadeInUp">
+                        <img src="imagens\screencapture-localhost-epistock-2025-06-16-09_41_33.png" alt="Painel de Controle">
+                    </div>
+                    <div class="screenshot animate__animated animate__fadeInUp animate__delay-1s">
+                        <img src="imagens\Screenshot (5).png" alt="Gestão de Equipamentos">
+                    </div>
+                    <div class="screenshot animate__animated animate__fadeInUp animate__delay-2s">
+                        <img src="imagens\Screenshot (6).png" alt="Relatórios">
+                    </div>
+                    <div class="screenshot animate__animated animate__fadeInUp animate__delay-3s">
+                        <img src="imagens\Screenshot (9).png" alt="Versão Mobile">
+                    </div>
+                </div>
+            </section>
+            
+            <div class="cta-buttons">
+                <a href="login.php" class="btn btn-primary animate__animated animate__fadeInUp">
+                    <span>Acessar Sistema</span> →
+                </a>
+            </div>
+        </div>
+        
+        <!-- Footer Atualizado -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Sobre Nós</h3>
+                    <p>A Greeny Workwear é líder em soluções profissionais de vestuário em Moçambique, combinando qualidade, inovação e compromisso com a excelência.</p>
+                    <p class="system-credit">Sistema web desenvolvido pela Moz Websites, com contribuição de Graciel Jacinto e Allan, como parte da Greeny Arts Solution.</p>
+                    <div class="social-footer">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>vendas@greenyworkwear.com</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+258 86 328 1201</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Bairro do Jardim, Rua do Jardim, Ao lado da 17ª esquadra do Jardim</span>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <a href="index.html">Início</a>
+                    <a href="sobre.html">Sobre Nós</a>
+                    <a href="#">Nossos Produtos</a>
+                    <a href="logar.php">Área do Cliente</a>
+                    <a href="infosistema.html">Sistema de Gestão</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 Greeny Workwear - Todos os direitos reservados | Orgulhosamente Moçambicana</p>
+                <p>Uma marca da Greeny Arts Solution</p>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        // Animar elementos quando entram na viewport
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.animate__animated');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                        const animationClass = element.classList[1];
+                        element.classList.add(animationClass);
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Executar uma vez ao carregar
+        });
+    </script>
+</body>
+</html>

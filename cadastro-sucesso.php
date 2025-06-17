@@ -113,7 +113,7 @@ unset($_SESSION['cadastro_sucesso']);
     <script>
         // Redireciona após 5 segundos
         setTimeout(function() {
-            window.location.href = 'index.html';
+            window.location.href = 'logar.php';
         }, 5000);
     </script>
 </body>

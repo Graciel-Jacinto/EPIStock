@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - Greeny Workwear</title>
+    <link rel="shortcut icon" href="imagens/logo-greeny-2025-1536x396.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --green: #0c9404;
+            --blue: #204b72;
+            --light-green: #5cb85c;
+            --light-blue: #5bc0de;
+            --gold: #f0ad4e;
+            --white: #ffffff;
+            --dark: #333333;
+            --light-gray: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-gray);
+            color: var(--dark);
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        /* Padrões moçambicanos animados */
+        .moz-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(12, 148, 4, 0.03) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(32, 75, 114, 0.03) 0%, transparent 25%);
+            z-index: -1;
+            animation: patternMove 20s infinite alternate;
+        }
+        
+        @keyframes patternMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+        
+        /* Container principal */
+        .main-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Cabeçalho */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: fadeInDown 1s both;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo img {
+            height: 50px;
+            transition: transform 0.3s;
+        }
+        
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        nav a {
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        nav a:hover {
+            color: var(--green);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--green);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .about-hero {
+            background: linear-gradient(135deg, rgba(32, 75, 114, 0.9), rgba(12, 148, 4, 0.8)), url('imagens/team-bg.jpg') center/cover;
+            color: var(--white);
+            padding: 6rem 5% 4rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .about-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            animation: fadeInUp 0.8s both;
+        }
+        
+        .about-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s both 0.3s;
+        }
+        
+        /* Timeline Section */
+        .timeline-section {
+            padding: 5rem 5%;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--blue);
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--green), var(--light-green));
+            border-radius: 2px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--light-blue);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 100%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            padding-right: calc(50% + 30px);
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            padding-left: calc(50% + 30px);
+            text-align: left;
+        }
+        
+        .timeline-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--green);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            border-left: none;
+            border-right: 4px solid var(--blue);
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-date {
+            display: inline-block;
+            background: var(--green);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-date {
+            background: var(--blue);
+        }
+        
+        .timeline-content h3 {
+            font-size: 1.4rem;
+            color: var(--blue);
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content h3 {
+            color: var(--green);
+        }
+        
+        .timeline-content p {
+            color: var(--dark);
+            margin-bottom: 0;
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 5rem 5%;
+            background-color: var(--light-gray);
+            text-align: center;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .team-member {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-member::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--green), var(--blue));
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-member-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            border: 5px solid var(--light-gray);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .team-member:hover .team-member-img {
+            transform: scale(1.05);
+            border-color: var(--light-blue);
+        }
+        
+        .team-member h3 {
+            color: var(--blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .team-member p.role {
+            color: var(--green);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .team-member p.bio {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            min-height: 60px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            color: var(--blue);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--green);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--blue);
+            color: var(--white);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--light-green);
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--light-green);
+        }
+
+        .footer-column p, .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            display: block;
+            transition: all 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info i {
+            color: var(--light-green);
+            font-size: 1.2rem;
+        }
+
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .social-footer {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-footer a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .social-footer a:hover {
+            background-color: var(--green);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem 5%;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                gap: 1rem;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-hero p {
+                font-size: 1rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 70px;
+                padding-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content {
+                border-right: none;
+                border-left: 4px solid var(--green);
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-column h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+
+            .social-footer {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-hero {
+                padding: 4rem 5% 2rem;
+            }
+            
+            .about-hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fundo com padrões moçambicanos -->
+    <div class="moz-pattern"></div>
+    
+    <!-- Container principal -->
+    <div class="main-container">
+        <header>
+            <a href="index.html" class="logo">
+                <img src="imagens/logo-greeny-2025-1536x396.png" alt="Greeny Workwear">
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="sobre.html" class="active">Sobre</a></li>
+                    <li><a href="infosistema.html">Sistema</a></li>
+                    <li><a href="logar.php">Login</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <h1 class="animate__animated animate__fadeInUp">Nossa História</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">Conheça a jornada da Greeny Workwear e o sistema que está revolucionando a gestão de pedidos e entregas em Moçambique</p>
+        </section>
+        
+        <!-- Timeline Section - Versão Melhorada -->
+        <section class="timeline-section">
+            <div class="section-title">
+                <h2>Como Tudo Começou</h2>
+                <p>Uma trajetória de inovação e superação de desafios</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item animate__animated animate__fadeIn">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Janeiro 2023</span>
+                        <h3>O Desafio Inicial</h3>
+                        <p>Identificando a necessidade de modernização dos processos, Agnaldo Macaringue, visionário da Greeny Workwear, lançou um desafio ambicioso: desenvolver em apenas 21 dias um sistema de gestão que transformaria completamente a operação da empresa. O objetivo era claro - otimizar fluxos de trabalho, aumentar a eficiência e proporcionar uma melhor experiência tanto para a equipe interna quanto para os clientes.</p>
+                        <div class="tech-used">
+                            <span>Tecnologias consideradas:</span>
+                            <div class="tech-tags">
+                                <span>PHP</span>
+                                <span>MySQL</span>
+                                <span>JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Fevereiro 2023</span>
+                        <h3>Desenvolvimento Ágil</h3>
+                        <p>Graciel Jacinto e Allan aceitaram o desafio e mergulharam em um intenso processo de desenvolvimento. Trabalhando em estreita colaboração com Edna Tamarcia (agente de vendas) e Stélio (entregador), a equipe criou um sistema sob medida que atendia às necessidades específicas da operação. O foco foi em usabilidade, eficiência e adaptação à realidade moçambicana, com interfaces intuitivas e funcionalidades que simplificavam processos antes manuais e demorados.</p>
+                        <div class="tech-used">
+                            <span>Tecnologias implementadas:</span>
+                            <div class="tech-tags">
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>JavaScript</span>
+                                <span>PHP</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Março 2023</span>
+                        <h3>Apresentação Estratégica</h3>
+                        <p>O sistema foi apresentado ao CEO da Greeny Arts Solution, Elisio Cambula, em uma demonstração que superou todas as expectativas. A apresentação mostrou não apenas o potencial técnico da solução, mas também seu impacto estratégico nos negócios - redução de erros, aumento da produtividade, melhor rastreabilidade dos pedidos e economia significativa de tempo em processos operacionais.</p>
+                        <div class="key-features">
+                            <span>Destaques:</span>
+                            <ul>
+                                <li>Relatórios em tempo real</li>
+                                <li>Gestão de inventário</li>
+                                <li>Rastreamento de entregas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate__animated animate__fadeIn animate__delay-3s">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Atualmente</span>
+                        <h3>Transformação Digital em Andamento</h3>
+                        <p>Hoje, o sistema está plenamente integrado às operações da Greeny Workwear, trazendo resultados tangíveis. A equipe de vendas gerencia pedidos com maior agilidade, os entregadores otimizam suas rotas com informações em tempo real, e a liderança tem acesso a dados estratégicos para tomada de decisão. Esta solução 100% moçambicana comprova a capacidade de inovação da equipe Greeny e seu compromisso com a excelência operacional.</p>
+                        <div class="results">
+                            <span>Resultados alcançados:</span>
+                            <ul>
+                                <li>+40% de eficiência operacional</li>
+                                <li>-60% de erros humanos</li>
+                                <li>+30% de satisfação do cliente</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Team Section -->
+        <section class="team-section">
+            <div class="section-title">
+                <h2>Conheça a Equipe</h2>
+                <p>Os talentos por trás desta inovação moçambicana</p>
+            </div>
+            
+            <div class="team-grid">
+                <!-- Desafiador -->
+                <div class="team-member animate__animated animate__fadeInUp">
+                    <img src="imagens/agnaldo.jpg" alt="Agnaldo Macaringue" class="team-member-img">
+                    <h3>Agnaldo Macaringue</h3>
+                    <p class="role">Desafiador do Projeto</p>
+                    <p class="bio">Visionário estratégico que identificou a necessidade de transformação digital e liderou a iniciativa de modernização dos processos da Greeny Workwear.</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Desenvolvedores -->
+                <div class="team-member animate__animated animate__fadeInUp animate__delay-1s">
+                    <img src="imagens/graciel.jpg" alt="Graciel Jacinto" class="team-member-img">
+                    <h3>Graciel Jacinto</h3>
+                    <p class="role">Arquiteto de Sistemas</p>
+                    <p class="bio">Responsável pela arquitetura técnica e desenvolvimento do sistema, garantindo solidez, escalabilidade e alinhamento com as necessidades operacionais.</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member animate__animated animate__fadeInUp animate__delay-2s">
+                    <img src="imagens/allan.jpg" alt="Allan" class="team-member-img">
+                    <h3>Allan</h3>
+                    <p class="role">Desenvolvedor Full-Stack</p>
+                    <p class="bio">Co-criador do sistema, focando em experiência do usuário e funcionalidades que simplificam o dia a dia da equipe operacional.</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <!-- CEO -->
+                <div class="team-member animate__animated animate__fadeInUp animate__delay-3s">
+                    <img src="imagens/elisio.jpg" alt="Elísio Cambula" class="team-member-img">
+                    <h3>Elísio Cambula</h3>
+                    <p class="role">CEO Greeny Arts Solution</p>
+                    <p class="bio">Líder que acreditou no projeto e proporcionou os recursos necessários para sua implementação, alinhando a solução à estratégia de negócios.</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Equipe de Operações -->
+                <div class="team-member animate__animated animate__fadeInUp">
+                    <img src="imagens/edna.jpg" alt="Edna Tamarcia" class="team-member-img">
+                    <h3>Edna Tamarcia</h3>
+                    <p class="role">Coordenadora de Vendas</p>
+                    <p class="bio">Principal usuária do sistema, forneceu insights valiosos durante o desenvolvimento para garantir que a solução atendesse às necessidades reais da operação.</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member animate__animated animate__fadeInUp animate__delay-1s">
+                    <img src="imagens/stelio.jpg" alt="Stélio" class="team-member-img">
+                    <h3>Stélio</h3>
+                    <p class="role">Especialista em Logística</p>
+                    <p class="bio">Utiliza o sistema diariamente para otimizar rotas e entregas, contribuindo com sua experiência prática para o aprimoramento contínuo da solução.</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer Atualizado -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Sobre Nós</h3>
+                    <p>A Greeny Workwear é líder em soluções profissionais de vestuário em Moçambique, combinando qualidade, inovação e compromisso com a excelência.</p>
+                    <p class="system-credit">Sistema web desenvolvido pela Moz Websites, com contribuição de Graciel Jacinto e Allan, como parte da Greeny Arts Solution.</p>
+                    <div class="social-footer">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>vendas@greenyworkwear.com</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+258 86 328 1201</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Bairro do Jardim, Rua do Jardim, Ao lado da 17ª esquadra do Jardim</span>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <a href="index.html">Início</a>
+                    <a href="sobre.html">Sobre Nós</a>
+                    <a href="#">Nossos Produtos</a>
+                    <a href="logar.php">Área do Cliente</a>
+                    <a href="">Sistema de Gestão</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 Greeny Workwear - Todos os direitos reservados | Orgulhosamente Moçambicana</p>
+                <p>Uma marca da Greeny Arts Solution</p>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animar elementos quando entram na viewport
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.animate__animated');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                        const animationClass = element.classList[1];
+                        element.classList.add(animationClass);
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Executar uma vez ao carregar
+        });
+    </script>
+</body>
+</html>
